@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+int* func(int* arr, int size, int& newSize) {
+    int minus = 0;
+    for (int i = 0; i < size; i++) {
+        if (arr[i] < 0) {
+            minus++;
+        }
+    }
+    newSize = size - minus;
+    int* newarr = new int[newSize];
+    int new = 0;
+    
+    for (int i = 0; i < size; i++) {
+        if (arr[i] >= 0) {
+            newarr[new] = arr[i];
+            new++;
+        }
+    }
+    
+    return newarr;
+}
+int main() {
+    int arr[] = {1, -2, 3, -4, 5, -6};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int newSize;
+    int* newarr = func(arr, size, newSize);
+    cout << "New array:";
+    for (int i = 0; i < new; i++) {
+        cout << " " << newarr[i];
+    }
+    delete[] newarr;  // Звільнення пам'яті
+    return 0;
+}
